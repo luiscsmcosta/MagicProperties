@@ -14,7 +14,7 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        apiCalls.getProperties(presenter)
+        presenter.getProprieties()
     }
 
     override fun injectPresenter() {

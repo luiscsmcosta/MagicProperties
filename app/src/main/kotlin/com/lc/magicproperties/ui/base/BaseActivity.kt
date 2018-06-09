@@ -2,13 +2,9 @@ package com.lc.magicproperties.ui.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.lc.magicproperties.api.ApiCalls
 import javax.inject.Inject
 
 abstract class BaseActivity<V : BaseContract.BaseView, P: BaseContract.Presenter<V>> : AppCompatActivity() {
-
-    @Inject
-    lateinit var apiCalls: ApiCalls
 
     @Inject
     lateinit var presenter: P

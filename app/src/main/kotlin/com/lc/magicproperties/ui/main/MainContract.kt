@@ -10,5 +10,7 @@ class MainContract {
 
     interface Presenter : BaseContract.Presenter<View> {
         fun onGetProprieties(propertiesDAO: PropertiesDAO)
+
+        fun getProprieties()
     }
 }
