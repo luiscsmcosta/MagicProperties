@@ -1,3 +1,1 @@
-
-"# MagicProperties" 
-"# MagicProperties" 
+Magic Properties
