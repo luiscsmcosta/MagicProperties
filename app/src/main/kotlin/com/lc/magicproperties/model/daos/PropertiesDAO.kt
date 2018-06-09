@@ -6,9 +6,12 @@ import com.lc.magicproperties.model.daos.properties.FilterDAO
 import com.lc.magicproperties.model.daos.properties.PropertyDAO
 import com.lc.magicproperties.model.daos.properties.location.LocationDAO
 
-data class PropertiesDAO(val properties: List<PropertyDAO>,
-                         val location: LocationDAO,
-                         val filterData: FilterDAO) : Parcelable {
+data class PropertiesDAO(var properties: List<PropertyDAO>,
+                         var location: LocationDAO,
+                         var filterData: FilterDAO) : Parcelable {
+
+    constructor() : this(ArrayList<PropertyDAO>(), LocationDAO(), FilterDAO())
+
     constructor(source: Parcel) : this(
             source.createTypedArrayList(PropertyDAO.CREATOR),
             source.readParcelable<LocationDAO>(LocationDAO::class.java.classLoader),

@@ -3,8 +3,11 @@ package com.lc.magicproperties.model.daos.properties
 import android.os.Parcel
 import android.os.Parcelable
 
-data class PriceDAO(val value: String,
-                    val currency: String) : Parcelable {
+data class PriceDAO(var value: String,
+                    var currency: String) : Parcelable {
+
+    constructor() : this("", "")
+
     constructor(source: Parcel) : this(
             source.readString(),
             source.readString()

@@ -40,6 +40,8 @@ class ApiCalls : IApiCalls {
 
                                 presenter.onGetProperties(propertiesDAO)
                             }
+                        } else {
+                            Log.e("Api", "\'getProperties\' error: " + response.code())
                         }
                     }
                 })
@@ -59,6 +61,8 @@ class ApiCalls : IApiCalls {
                             if (response.body() != null) {
                                 Log.d("Api", "\'getStats\' response: " + response.body())
                             }
+                        } else {
+                            Log.e("Api", "\'getStats\' error: " + response.code())
                         }
                     }
                 })

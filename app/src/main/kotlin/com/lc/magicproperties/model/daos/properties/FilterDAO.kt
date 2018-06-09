@@ -3,8 +3,11 @@ package com.lc.magicproperties.model.daos.properties
 import android.os.Parcel
 import android.os.Parcelable
 
-data class FilterDAO(val lowestPricePerNight: PriceDAO,
-                     val highestPricePerNight: PriceDAO) : Parcelable {
+data class FilterDAO(var lowestPricePerNight: PriceDAO,
+                     var highestPricePerNight: PriceDAO) : Parcelable {
+
+    constructor() : this(PriceDAO(), PriceDAO())
+
     constructor(source: Parcel) : this(
             source.readParcelable<PriceDAO>(PriceDAO::class.java.classLoader),
             source.readParcelable<PriceDAO>(PriceDAO::class.java.classLoader)

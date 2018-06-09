@@ -5,7 +5,7 @@ import com.lc.magicproperties.model.daos.properties.PropertyDAO
 import org.mapstruct.Mapper
 
 @Mapper
-interface PropertyMapper : OverallRatingMapper, PriceMapper {
+interface PropertyMapper : OverallRatingMapper, FilterMapper {
 
     fun fromPropertyDtoToDao(dto: PropertyDTO): PropertyDAO
 }

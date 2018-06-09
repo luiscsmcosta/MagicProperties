@@ -39,7 +39,9 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
 
-    implementation group: 'org.mapstruct', name: 'mapstruct-jdk8', version: '1.2.0.Final'
+    // Class Mapper
+    implementation 'org.mapstruct:mapstruct:1.2.0.Final'
+    kapt "org.mapstruct:mapstruct-processor:1.2.0.Final"
 
     implementation 'com.google.dagger:dagger:2.13'
     kapt 'com.google.dagger:dagger-compiler:2.13'

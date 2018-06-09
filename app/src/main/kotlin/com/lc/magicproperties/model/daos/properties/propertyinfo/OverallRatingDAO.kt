@@ -3,8 +3,11 @@ package com.lc.magicproperties.model.daos.properties.propertyinfo
 import android.os.Parcel
 import android.os.Parcelable
 
-data class OverallRatingDAO(val overall: Int,
-                            val numberOfRatings: String) : Parcelable {
+data class OverallRatingDAO(var overall: Int,
+                            var numberOfRatings: String) : Parcelable {
+
+    constructor() : this(-1, "")
+
     constructor(source: Parcel) : this(
             source.readInt(),
             source.readString()

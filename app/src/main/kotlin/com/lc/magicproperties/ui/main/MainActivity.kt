@@ -33,6 +33,6 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
 
         //TODO put info on Vieww
 
-        Log.d(MainActivity::class.java.name, "properties: " + propertiesDAO.filterData.lowestPricePerNight)
+        Log.d(MainActivity::class.java.name, "properties lowest price: " + propertiesDAO.filterData.lowestPricePerNight.value + " " + propertiesDAO.filterData.lowestPricePerNight.currency)
     }
 }

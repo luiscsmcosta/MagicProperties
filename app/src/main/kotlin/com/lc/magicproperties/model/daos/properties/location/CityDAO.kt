@@ -3,10 +3,13 @@ package com.lc.magicproperties.model.daos.properties.location
 import android.os.Parcel
 import android.os.Parcelable
 
-data class CityDAO(val id: String,
-                   val name: String,
-                   val idCountry: String,
-                   val country: String) : Parcelable {
+data class CityDAO(var id: String,
+                   var name: String,
+                   var idCountry: String,
+                   var country: String) : Parcelable {
+
+    constructor() : this("", "", "", "")
+
     constructor(source: Parcel) : this(
             source.readString(),
             source.readString(),
