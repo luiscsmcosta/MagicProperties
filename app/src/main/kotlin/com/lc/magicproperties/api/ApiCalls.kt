@@ -1,13 +1,11 @@
 package com.lc.magicproperties.api
 
 import android.util.Log
-import com.lc.magicproperties.application.MagicPropertiesApplication
 import com.lc.magicproperties.application.applicationComponent
 import com.lc.magicproperties.model.daos.PropertiesDAO
 import com.lc.magicproperties.model.mapper.PropertiesMapper
 import com.lc.magicproperties.network.NetworkLayer
 import com.lc.magicproperties.network.dtos.PropertiesDTO
-import com.lc.magicproperties.ui.base.BasePresenter
 import com.lc.magicproperties.ui.main.MainPresenter
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,7 +16,7 @@ import retrofit2.Response
 
 class ApiCalls : IApiCalls {
 
-    constructor(aplication: MagicPropertiesApplication) {
+    constructor() {
         applicationComponent.inject(this)
     }
 
@@ -40,7 +38,7 @@ class ApiCalls : IApiCalls {
                                 val propertiesDTO: PropertiesDTO = response.body()!!
                                 val propertiesDAO: PropertiesDAO = Mappers.getMapper(PropertiesMapper::class.java).fromPropertiesDtoToDao(propertiesDTO)
 
-                                presenter.onGetProprieties(propertiesDAO)
+                                presenter.onGetProperties(propertiesDAO)
                             }
                         }
                     }

@@ -10,7 +10,7 @@ class ApiModule(private val application: MagicPropertiesApplication) {
 
     @Provides
     @Singleton
-    fun provideAPICalls(): IApiCalls {
-        return ApiCalls(application)
+    fun provideApiCalls(): IApiCalls {
+        return ApiCalls()
     }
 }

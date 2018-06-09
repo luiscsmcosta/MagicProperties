@@ -8,7 +8,7 @@ class BaseContract {
         fun attachView(view : V)
         fun detachView()
 
-        fun saveInstance(outState: Bundle?, propertiesDAO: PropertiesDAO)
+        fun saveInstance(outState: Bundle?, propertiesDAO: PropertiesDAO?)
         fun restoreInstance(savedInstanceState: Bundle?)
     }
 

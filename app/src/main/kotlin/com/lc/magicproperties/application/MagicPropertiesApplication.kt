@@ -1,10 +1,11 @@
 package com.lc.magicproperties.application
 
 import android.app.Application
+import com.lc.magicproperties.api.ApiModule
 
 lateinit var applicationComponent : ApplicationComponent
 
-object MagicPropertiesApplication : Application() {
+class MagicPropertiesApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -14,6 +15,6 @@ object MagicPropertiesApplication : Application() {
 
     @Synchronized
     private fun createApplicationComponent(): ApplicationComponent {
-        return DaggerApplicationComponent.create()
+        return DaggerApplicationComponent.builder().apiModule(ApiModule(this)).build()
     }
 }
