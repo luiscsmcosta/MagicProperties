@@ -23,7 +23,7 @@ open class BasePresenter<V : BaseContract.BaseView> : BaseContract.Presenter<V> 
         return null
     }
 
-    override fun saveInstance(outState: Bundle?, propertiesDAO: PropertiesDAO?) {
+    override fun saveInstance(outState: Bundle?) {
         // do nothing. Override if you need to store data on configuration changes.
     }
 

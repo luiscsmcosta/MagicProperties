@@ -12,21 +12,31 @@ class MainPresenter @Inject constructor() : BasePresenter<MainContract.View>(), 
     @Inject
     lateinit var apiCalls: IApiCalls
 
-    override fun saveInstance(outState: Bundle?, propertiesDAO: PropertiesDAO?) {
+    lateinit var progressView: android.view.View
+
+    override fun saveInstance(outState: Bundle?, propertiesDAO: PropertiesDAO?, progressViewVisibility: Int) {
         outState?.putParcelable(SaveInstanceConsts.PROPERTIES_KEY, propertiesDAO)
+        outState?.putInt(SaveInstanceConsts.PROGRESS_VISIBILITY_KEY, progressViewVisibility)
     }
 
     override fun restoreInstance(savedInstanceState: Bundle?) {
-        val propertiesDAO: PropertiesDAO = savedInstanceState?.get(SaveInstanceConsts.PROPERTIES_KEY) as PropertiesDAO
+        val propertiesDAO: PropertiesDAO = savedInstanceState?.getParcelable(SaveInstanceConsts.PROPERTIES_KEY) as PropertiesDAO
 
-        getView()?.showProperties(propertiesDAO)
+        getView()?.showInfo(propertiesDAO)
+        getView()?.setProgressViewVisibility(savedInstanceState.getInt(SaveInstanceConsts.PROGRESS_VISIBILITY_KEY))
     }
 
     override fun onGetProperties(propertiesDAO: PropertiesDAO) {
-        getView()?.showProperties(propertiesDAO)
+        progressView.visibility = android.view.View.GONE
+
+        getView()?.showInfo(propertiesDAO)
     }
 
-    override fun getProperties() {
+    override fun getProperties(progress: android.view.View) {
+        progressView = progress
+
+        progressView.visibility = android.view.View.VISIBLE
+
         apiCalls.getProperties(this)
     }
 }

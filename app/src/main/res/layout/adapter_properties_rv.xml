@@ -2,16 +2,19 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/adapterItemHeight"
+    android:layout_height="wrap_content"
     android:paddingBottom="@dimen/adapterItemPadding"
+    android:paddingEnd="@dimen/layoutPadding"
+    android:paddingStart="@dimen/layoutPadding"
     android:paddingTop="@dimen/adapterItemPadding">
 
     <TextView
         android:id="@+id/propertyNameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/greyText"
+        android:textColor="@color/darkGrey"
         android:textSize="@dimen/propertyNameTextSize"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,29 +22,32 @@
         android:id="@+id/propertyLowestPriceTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/greyText"
+        android:textColor="@color/darkGrey"
         android:textSize="@dimen/propertyLowestPriceTextSize"
-        app:layout_constraintBottom_toBottomOf="@id/propertyNameTv"
-        app:layout_constraintStart_toEndOf="@id/propertyNameTv"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="@dimen/adapterTextMarginTop"
+        android:gravity="end"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/propertyNameTv" />
 
     <TextView
         android:id="@+id/propertyRatingTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/greyText"
+        android:textColor="@color/darkGrey"
         android:textSize="@dimen/propertyRatingTextSize"
-        app:layout_constraintBottom_toBottomOf="@id/propertyLowestPriceTv"
+        android:layout_marginStart="@dimen/ratingPaddingStart"
         app:layout_constraintStart_toEndOf="@id/propertyLowestPriceTv"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/propertyLowestPriceTv" />
 
     <TextView
         android:id="@+id/propertyDescriptionTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/greyText"
+        android:textColor="@color/darkGrey"
+        android:layout_marginTop="@dimen/adapterTextMarginTop"
         android:textSize="@dimen/propertyDescriptionTextSize"
-        app:layout_constraintTop_toBottomOf="@id/propertyNameTv"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/propertyRatingTv"
         app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

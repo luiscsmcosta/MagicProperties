@@ -7,43 +7,47 @@
 
     <TextView
         android:id="@+id/propertiesLocationTv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingEnd="@dimen/layoutPadding"
         android:paddingStart="@dimen/layoutPadding"
-        android:textColor="@color/greyText"
+        android:paddingTop="@dimen/textPadding"
+        android:textColor="@color/lightGrey"
         android:textSize="@dimen/propertiesLocationTextSize"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lowestPriceOnLocationTv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:paddingEnd="@dimen/layoutPadding"
-        android:textColor="@color/greyText"
+        android:paddingStart="@dimen/layoutPadding"
+        android:paddingBottom="@dimen/textPadding"
+        android:textColor="@color/lightGrey"
         android:textSize="@dimen/lowestPriceOnLocationTextSize"
-        app:layout_constraintBottom_toBottomOf="@id/propertiesLocationTv"
         app:layout_constraintTop_toBottomOf="@id/propertiesLocationTv" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/propertiesRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingEnd="@dimen/layoutPadding"
-        android:paddingStart="@dimen/layoutPadding"
         app:layout_constraintTop_toBottomOf="@id/lowestPriceOnLocationTv" />
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/loadingLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparentBlack"
-        android:gravity="center">
+        android:background="@color/transparentBlack">
 
         <ProgressBar
             android:layout_width="@dimen/loadingProgressDimens"
-            android:layout_height="@dimen/loadingProgressDimens" />
+            android:layout_height="@dimen/loadingProgressDimens"
+            android:layout_gravity="center"/>
 
-    </LinearLayout>
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Magic Properties</string>
 
+    <string name="cityString">%1$s, %2$s</string>
     <string name="lowestPriceString">From: %1$s %2$s/night</string>
-    <string name="ratingString">Rate: %1$s/100</string>
-    <string name="descriptionString"><i>\"%1$s\"</i></string>
+    <string name="ratingString">| Rating: %1$s/100 (total: %2$s)</string>
+    <string name="descriptionString">\"%1$s\"</string>
 </resources>
