@@ -32,28 +32,30 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // Modules
     implementation project(':network')
 
+    // Android
     implementation 'com.android.support:appcompat-v7:26.1.0'
-
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
 
     // Class Mapper
     implementation 'org.mapstruct:mapstruct:1.2.0.Final'
     kapt "org.mapstruct:mapstruct-processor:1.2.0.Final"
 
+    // Dagger
     implementation 'com.google.dagger:dagger:2.13'
     kapt 'com.google.dagger:dagger-compiler:2.13'
 
+    // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.3.0"
 
+    // RxJava
     implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
 
-
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-
-
+    // Tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

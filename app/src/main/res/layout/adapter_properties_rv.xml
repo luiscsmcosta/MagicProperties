@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/adapterItemHeight"
+    android:paddingBottom="@dimen/adapterItemPadding"
+    android:paddingTop="@dimen/adapterItemPadding">
+
+    <TextView
+        android:id="@+id/propertyNameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/greyText"
+        android:textSize="@dimen/propertyNameTextSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/propertyLowestPriceTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/greyText"
+        android:textSize="@dimen/propertyLowestPriceTextSize"
+        app:layout_constraintBottom_toBottomOf="@id/propertyNameTv"
+        app:layout_constraintStart_toEndOf="@id/propertyNameTv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/propertyRatingTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/greyText"
+        android:textSize="@dimen/propertyRatingTextSize"
+        app:layout_constraintBottom_toBottomOf="@id/propertyLowestPriceTv"
+        app:layout_constraintStart_toEndOf="@id/propertyLowestPriceTv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/propertyDescriptionTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/greyText"
+        android:textSize="@dimen/propertyDescriptionTextSize"
+        app:layout_constraintTop_toBottomOf="@id/propertyNameTv"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

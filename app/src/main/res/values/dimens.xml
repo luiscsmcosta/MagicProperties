@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Layout measures -->
+    <dimen name="layoutPadding">16dp</dimen>
+    <dimen name="adapterItemPadding">8dp</dimen>
+    <dimen name="loadingProgressDimens">50dp</dimen>
+    <dimen name="adapterItemHeight">80dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="propertiesLocationTextSize">18sp</dimen>
+    <dimen name="lowestPriceOnLocationTextSize">14sp</dimen>
+
+    <dimen name="propertyNameTextSize">12sp</dimen>
+    <dimen name="propertyLowestPriceTextSize">12sp</dimen>
+    <dimen name="propertyRatingTextSize">12sp</dimen>
+    <dimen name="propertyDescriptionTextSize">12sp</dimen>
+</resources>
