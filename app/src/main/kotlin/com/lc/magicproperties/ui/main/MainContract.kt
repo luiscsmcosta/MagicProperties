@@ -10,11 +10,7 @@ class MainContract {
         fun setProgressViewVisibility(progressViewVisibility: Int)
     }
 
-    interface Presenter : BaseContract.Presenter<View> {
-        fun onGetProperties(propertiesDAO: PropertiesDAO)
-
-        fun getProperties(progress: android.view.View)
-
+    interface Presenter : PropertiesContract.Presenter<View> {
         fun saveInstance(outState: Bundle?, propertiesDAO: PropertiesDAO?, progressViewVisibility: Int)
     }
 }

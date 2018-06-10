@@ -4,10 +4,11 @@
     <!-- Layout measures -->
     <dimen name="layoutPadding">16dp</dimen>
     <dimen name="textPadding">8dp</dimen>
-    <dimen name="adapterItemPadding">8dp</dimen>
+    <dimen name="adapterItemPadding">16dp</dimen>
     <dimen name="loadingProgressDimens">50dp</dimen>
-    <dimen name="ratingPaddingStart">4dp</dimen>
+    <dimen name="textImageMargin">12dp</dimen>
     <dimen name="adapterTextMarginTop">4dp</dimen>
+    <dimen name="cardCornersSize">16dp</dimen>
 
     <!-- Text sizes -->
     <dimen name="propertiesLocationTextSize">18sp</dimen>

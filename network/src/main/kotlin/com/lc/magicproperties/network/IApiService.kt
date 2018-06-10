@@ -8,5 +8,5 @@ interface IApiService {
 
     fun getProperties(): Single<Response<PropertiesDTO>>
 
-    fun getStats(action: String, duration: Int): Single<Response<Int>>
+    fun getStats(action: String, duration: Long): Single<Response<Int>>
 }

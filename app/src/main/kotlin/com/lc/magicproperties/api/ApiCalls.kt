@@ -6,7 +6,8 @@ import com.lc.magicproperties.model.daos.PropertiesDAO
 import com.lc.magicproperties.model.mapper.PropertiesMapper
 import com.lc.magicproperties.network.NetworkLayer
 import com.lc.magicproperties.network.dtos.PropertiesDTO
-import com.lc.magicproperties.ui.main.MainPresenter
+import com.lc.magicproperties.ui.base.BasePresenter
+import com.lc.magicproperties.ui.main.PropertiesContract
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -23,7 +24,7 @@ class ApiCalls : IApiCalls {
     private val bgscheduler = Schedulers.io()
     private val mainthreadscheduler = AndroidSchedulers.mainThread()
 
-    override fun getProperties(presenter: MainPresenter) {
+    override fun getProperties(presenter: PropertiesContract.Presenter<*>) {
         NetworkLayer.getApiService().getProperties().subscribeOn(bgscheduler).observeOn(mainthreadscheduler)
                 .subscribeWith(object : DisposableSingleObserver<Response<PropertiesDTO>>() {
                     override fun onError(e: Throwable) {
@@ -43,11 +44,13 @@ class ApiCalls : IApiCalls {
                         } else {
                             Log.e("Api", "\'getProperties\' error: " + response.code())
                         }
+
+                        getStats("load-details", response.raw().receivedResponseAtMillis() - response.raw().sentRequestAtMillis())
                     }
                 })
     }
 
-    override fun getStats(action: String, duration: Int) {
+    override fun getStats(action: String, duration: Long) {
         NetworkLayer.getApiService().getStats(action, duration).subscribeOn(bgscheduler).observeOn(mainthreadscheduler)
                 .subscribeWith(object : DisposableSingleObserver<Response<Int>>() {
                     override fun onError(e: Throwable) {

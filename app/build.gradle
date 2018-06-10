@@ -7,7 +7,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
+
     defaultConfig {
         applicationId "com.lc.magicproperties"
         minSdkVersion 26
@@ -36,10 +37,16 @@ dependencies {
     implementation project(':network')
 
     // Android
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation "com.android.support:appcompat-v7:$android_apis_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.1'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.android.support:recyclerview-v7:$android_apis_version"
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Images
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    implementation 'com.github.bumptech.glide:annotations:4.7.1'
+    kapt 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
 
     // Class Mapper
     implementation 'org.mapstruct:mapstruct:1.2.0.Final'

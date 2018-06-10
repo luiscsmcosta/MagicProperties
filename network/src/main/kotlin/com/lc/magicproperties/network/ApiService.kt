@@ -14,7 +14,7 @@ class ApiService(httpClientFactory: IHttpClientFactory<IApiRetrofitServiceDefini
         return api.getProperties()
     }
 
-    override fun getStats(action: String, duration: Int): Single<Response<Int>> {
+    override fun getStats(action: String, duration: Long): Single<Response<Int>> {
         return api.getStats(action, duration)
     }
 

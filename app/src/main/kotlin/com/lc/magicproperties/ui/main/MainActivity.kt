@@ -1,17 +1,19 @@
 package com.lc.magicproperties.ui.main
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.lc.magicproperties.R
 import com.lc.magicproperties.application.applicationComponent
+import com.lc.magicproperties.consts.CurrencyConsts
 import com.lc.magicproperties.model.daos.PropertiesDAO
 import com.lc.magicproperties.ui.adapters.PropertiesRecyclerViewAdapter
 import com.lc.magicproperties.ui.base.BaseActivity
+import java.text.DecimalFormat
 
 class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContract.View {
 
@@ -47,11 +49,13 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
 
-            addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
+//            addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
 
         }
 
-        presenter.getProperties(progressView)
+        if(propertiesDAO == null) {
+            presenter.getProperties(progressView)
+        }
     }
 
     override fun injectPresenter() {
@@ -67,12 +71,12 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     override fun showInfo(propertiesDAO: PropertiesDAO) {
         this.propertiesDAO = propertiesDAO
 
+        val priceInEur = propertiesDAO.filterData.lowestPricePerNight.value.toFloat() / CurrencyConsts.VEF_TO_EUR
+
         this.propertiesLocationTv.text = String.format(getString(R.string.cityString), propertiesDAO.location.city.name, propertiesDAO.location.city.country)
-        this.lowestPriceOnLocationTv.text = String.format(getString(R.string.lowestPriceString), propertiesDAO.filterData.lowestPricePerNight.value, propertiesDAO.filterData.lowestPricePerNight.currency)
+        this.lowestPriceOnLocationTv.text = String.format(getString(R.string.lowestPriceString), DecimalFormat(CurrencyConsts.DECIMAL_FORMAT).format(priceInEur))
 
         this.viewAdapter.setProperties(propertiesDAO.properties)
-
-        Log.d(MainActivity::class.java.name, "properties lowest price: " + propertiesDAO.filterData.lowestPricePerNight.value + " " + propertiesDAO.filterData.lowestPricePerNight.currency)
     }
 
     override fun setProgressViewVisibility(progressViewVisibility: Int) {

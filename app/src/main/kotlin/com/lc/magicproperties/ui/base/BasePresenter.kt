@@ -1,6 +1,7 @@
 package com.lc.magicproperties.ui.base
 
 import android.os.Bundle
+import android.view.View
 import com.lc.magicproperties.model.daos.PropertiesDAO
 
 open class BasePresenter<V : BaseContract.BaseView> : BaseContract.Presenter<V> {
@@ -24,10 +25,10 @@ open class BasePresenter<V : BaseContract.BaseView> : BaseContract.Presenter<V> 
     }
 
     override fun saveInstance(outState: Bundle?) {
-        // do nothing. Override if you need to store data on configuration changes.
+        // do nothing.
     }
 
     override fun restoreInstance(savedInstanceState: Bundle?) {
-        // do nothing. Override if you want to restore state after a configuration change.
+        // do nothing.
     }
 }

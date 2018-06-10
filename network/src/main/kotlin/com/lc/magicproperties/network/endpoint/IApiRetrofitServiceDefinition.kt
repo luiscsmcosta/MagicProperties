@@ -14,5 +14,5 @@ interface IApiRetrofitServiceDefinition {
 
     @GET(PathConstants.STATS)
     fun getStats(@Query("action") action: String,
-                 @Query("duration") duration: Int) : Single<Response<Int>>
+                 @Query("duration") duration: Long) : Single<Response<Int>>
 }
