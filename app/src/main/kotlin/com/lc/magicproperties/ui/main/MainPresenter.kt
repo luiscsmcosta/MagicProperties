@@ -29,8 +29,8 @@ class MainPresenter @Inject constructor() : BasePresenter<MainContract.View>(), 
     }
 
     override fun onGetProperties(propertiesDAO: PropertiesDAO) {
-        // This sorts the list by highest rating, then by lowest price and then by position
-        propertiesDAO.properties = propertiesDAO.properties.sortedWith(compareByDescending<PropertyDAO>{ it.overallRating.overall }.thenBy{ it.lowestPricePerNight.value }.thenBy { it.position })
+        // This sorts the list by position then by lowest price then by highest rating
+        propertiesDAO.properties = propertiesDAO.properties.sortedWith(compareBy<PropertyDAO>{ it.position  }.thenBy{ it.lowestPricePerNight.value }.thenByDescending { it.overallRating.overall })
 
         getView()?.showInfo(propertiesDAO)
 
