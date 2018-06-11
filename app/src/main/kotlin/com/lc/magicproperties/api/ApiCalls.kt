@@ -26,13 +26,13 @@ class ApiCalls : IApiCalls {
         NetworkLayer.getApiService().getProperties().subscribeOn(bgscheduler).observeOn(mainthreadscheduler)
                 .subscribeWith(object : DisposableSingleObserver<Response<PropertiesDTO>>() {
                     override fun onError(e: Throwable) {
-                        Log.e("Api", "\'getProperties\' error: \n" + e.message)
+                        Log.e(ApiCalls::class.java.name, "\'getProperties\' error: \n" + e.message)
                         apiListener.onGetPropertiesError()
                     }
 
                     override fun onSuccess(response: Response<PropertiesDTO>) {
                         if(response.isSuccessful) {
-                            Log.d("Api", "\'getProperties\' success")
+                            Log.d(ApiCalls::class.java.name, "\'getProperties\' success")
 
                             if (response.body() != null) {
                                 val propertiesDTO: PropertiesDTO = response.body()!!
@@ -43,7 +43,7 @@ class ApiCalls : IApiCalls {
                                 apiListener.onGetPropertiesError()
                             }
                         } else {
-                            Log.e("Api", "\'getProperties\' error: " + response.code())
+                            Log.e(ApiCalls::class.java.name, "\'getProperties\' error: " + response.code())
                             apiListener.onGetPropertiesError()
                         }
 
@@ -56,18 +56,18 @@ class ApiCalls : IApiCalls {
         NetworkLayer.getApiService().getStats(action, duration).subscribeOn(bgscheduler).observeOn(mainthreadscheduler)
                 .subscribeWith(object : DisposableSingleObserver<Response<Int>>() {
                     override fun onError(e: Throwable) {
-                        Log.e("Api", "\'getStats\' error: \n" + e.message)
+                        Log.e(ApiCalls::class.java.name, "\'getStats\' error: \n" + e.message)
                     }
 
                     override fun onSuccess(response: Response<Int>) {
                         if(response.isSuccessful) {
-                            Log.d("Api", "\'getStats\' success")
+                            Log.d(ApiCalls::class.java.name, "\'getStats\' success")
 
                             if (response.body() != null) {
-                                Log.d("Api", "\'getStats\' response: " + response.body())
+                                Log.d(ApiCalls::class.java.name, "\'getStats\' response: " + response.body())
                             }
                         } else {
-                            Log.e("Api", "\'getStats\' error: " + response.code())
+                            Log.e(ApiCalls::class.java.name, "\'getStats\' error: " + response.code())
                         }
                     }
                 })
