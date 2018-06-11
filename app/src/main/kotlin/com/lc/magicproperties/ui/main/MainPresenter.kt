@@ -2,6 +2,7 @@ package com.lc.magicproperties.ui.main
 
 import android.os.Bundle
 import com.lc.magicproperties.api.IApiCalls
+import com.lc.magicproperties.api.IApiListener
 import com.lc.magicproperties.consts.SaveInstanceConsts
 import com.lc.magicproperties.model.daos.PropertiesDAO
 import com.lc.magicproperties.model.daos.properties.PropertyDAO
@@ -9,7 +10,7 @@ import com.lc.magicproperties.ui.base.BasePresenter
 import java.util.*
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor() : BasePresenter<MainContract.View>(), MainContract.Presenter {
+class MainPresenter @Inject constructor() : BasePresenter<MainContract.View>(), MainContract.Presenter, IApiListener {
 
     @Inject
     lateinit var apiCalls: IApiCalls
@@ -28,7 +29,7 @@ class MainPresenter @Inject constructor() : BasePresenter<MainContract.View>(), 
         getView()?.setProgressViewVisibility(savedInstanceState.getInt(SaveInstanceConsts.PROGRESS_VISIBILITY_KEY))
     }
 
-    override fun onGetProperties(propertiesDAO: PropertiesDAO) {
+    override fun onGetPropertiesSuccess(propertiesDAO: PropertiesDAO) {
         // This sorts the list by position then by lowest price then by highest rating
         propertiesDAO.properties = propertiesDAO.properties.sortedWith(compareBy<PropertyDAO>{ it.position  }.thenBy{ it.lowestPricePerNight.value }.thenByDescending { it.overallRating.overall })
 
@@ -37,7 +38,11 @@ class MainPresenter @Inject constructor() : BasePresenter<MainContract.View>(), 
         progressView.visibility = android.view.View.GONE
     }
 
-    override fun getProperties(progress: android.view.View) {
+    override fun onGetPropertiesError() {
+        getView()?.showInfoError()
+    }
+
+    override fun getInfo(progress: android.view.View) {
         progressView = progress
 
         progressView.visibility = android.view.View.VISIBLE

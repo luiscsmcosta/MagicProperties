@@ -6,8 +6,6 @@ import com.lc.magicproperties.model.daos.PropertiesDAO
 import com.lc.magicproperties.model.mapper.PropertiesMapper
 import com.lc.magicproperties.network.NetworkLayer
 import com.lc.magicproperties.network.dtos.PropertiesDTO
-import com.lc.magicproperties.ui.base.BasePresenter
-import com.lc.magicproperties.ui.main.PropertiesContract
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -24,11 +22,12 @@ class ApiCalls : IApiCalls {
     private val bgscheduler = Schedulers.io()
     private val mainthreadscheduler = AndroidSchedulers.mainThread()
 
-    override fun getProperties(presenter: PropertiesContract.Presenter<*>) {
+    override fun getProperties(apiListener: IApiListener) {
         NetworkLayer.getApiService().getProperties().subscribeOn(bgscheduler).observeOn(mainthreadscheduler)
                 .subscribeWith(object : DisposableSingleObserver<Response<PropertiesDTO>>() {
                     override fun onError(e: Throwable) {
                         Log.e("Api", "\'getProperties\' error: \n" + e.message)
+                        apiListener.onGetPropertiesError()
                     }
 
                     override fun onSuccess(response: Response<PropertiesDTO>) {
@@ -39,10 +38,13 @@ class ApiCalls : IApiCalls {
                                 val propertiesDTO: PropertiesDTO = response.body()!!
                                 val propertiesDAO: PropertiesDAO = Mappers.getMapper(PropertiesMapper::class.java).fromPropertiesDtoToDao(propertiesDTO)
 
-                                presenter.onGetProperties(propertiesDAO)
+                                apiListener.onGetPropertiesSuccess(propertiesDAO)
+                            } else {
+                                apiListener.onGetPropertiesError()
                             }
                         } else {
                             Log.e("Api", "\'getProperties\' error: " + response.code())
+                            apiListener.onGetPropertiesError()
                         }
 
                         getStats("load-details", response.raw().receivedResponseAtMillis() - response.raw().sentRequestAtMillis())

@@ -1,8 +1,6 @@
 package com.lc.magicproperties.ui.main
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -22,6 +20,7 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     private lateinit var progressView: View
     private lateinit var propertiesLocationTv: TextView
     private lateinit var lowestPriceOnLocationTv: TextView
+    private lateinit var noResultsTv: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: PropertiesRecyclerViewAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -38,6 +37,8 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         viewManager = LinearLayoutManager(this)
         viewAdapter = PropertiesRecyclerViewAdapter(this, null)
 
+        noResultsTv = findViewById(R.id.noResultsTv)
+
         recyclerView = findViewById<RecyclerView>(R.id.propertiesRv).apply {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
@@ -49,12 +50,10 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
 
-//            addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
-
         }
 
         if(propertiesDAO == null) {
-            presenter.getProperties(progressView)
+            presenter.getInfo(progressView)
         }
     }
 
@@ -69,6 +68,9 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
     }
 
     override fun showInfo(propertiesDAO: PropertiesDAO) {
+        this.recyclerView.visibility = View.VISIBLE
+        this.noResultsTv.visibility = View.GONE
+
         this.propertiesDAO = propertiesDAO
 
         val priceInEur = propertiesDAO.filterData.lowestPricePerNight.value.toFloat() / CurrencyConsts.VEF_TO_EUR
@@ -77,6 +79,11 @@ class MainActivity : BaseActivity<MainContract.View, MainPresenter>(), MainContr
         this.lowestPriceOnLocationTv.text = String.format(getString(R.string.lowestPriceString), DecimalFormat(CurrencyConsts.DECIMAL_FORMAT).format(priceInEur))
 
         this.viewAdapter.setProperties(propertiesDAO.properties)
+    }
+
+    override fun showInfoError() {
+        this.recyclerView.visibility = View.GONE
+        this.noResultsTv.visibility = View.VISIBLE
     }
 
     override fun setProgressViewVisibility(progressViewVisibility: Int) {
