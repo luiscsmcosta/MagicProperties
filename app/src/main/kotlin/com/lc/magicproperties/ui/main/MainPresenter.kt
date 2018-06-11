@@ -23,9 +23,14 @@ class MainPresenter @Inject constructor() : BasePresenter<MainContract.View>(), 
     }
 
     override fun restoreInstance(savedInstanceState: Bundle?) {
-        val propertiesDAO: PropertiesDAO = savedInstanceState?.getParcelable(SaveInstanceConsts.PROPERTIES_KEY) as PropertiesDAO
+        val propertiesDAO: PropertiesDAO? = savedInstanceState?.getParcelable(SaveInstanceConsts.PROPERTIES_KEY) as PropertiesDAO
 
-        getView()?.showInfo(propertiesDAO)
+        if(propertiesDAO != null) {
+            getView()?.showInfo(propertiesDAO)
+        } else {
+            getView()?.showInfoError()
+        }
+
         getView()?.setProgressViewVisibility(savedInstanceState.getInt(SaveInstanceConsts.PROGRESS_VISIBILITY_KEY))
     }
 
