@@ -7,5 +7,6 @@
     <string name="descriptionString">\"%1$s\"</string>
     <string name="imageUrlString">https://%1$s%2$s</string>
 
+    <string name="noResults">No results</string>
     <string name="propertyImage">Property image</string>
 </resources>

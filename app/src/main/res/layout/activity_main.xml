@@ -24,9 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:paddingBottom="@dimen/textPadding"
         android:paddingEnd="@dimen/layoutPadding"
         android:paddingStart="@dimen/layoutPadding"
-        android:paddingBottom="@dimen/textPadding"
         android:textColor="@color/lightGrey"
         android:textSize="@dimen/lowestPriceOnLocationTextSize"
         app:layout_constraintTop_toBottomOf="@id/propertiesLocationTv" />
@@ -42,7 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/noResultsHeight"
         android:gravity="bottom|center_horizontal"
-        android:visibility="gone"/>
+        android:text="@string/noResults"
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/loadingLinearLayout"
@@ -53,7 +54,7 @@
         <ProgressBar
             android:layout_width="@dimen/loadingProgressDimens"
             android:layout_height="@dimen/loadingProgressDimens"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
     </FrameLayout>
 

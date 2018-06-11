@@ -40,6 +40,8 @@ class MainPresenter @Inject constructor() : BasePresenter<MainContract.View>(), 
 
     override fun onGetPropertiesError() {
         getView()?.showInfoError()
+
+        progressView.visibility = android.view.View.GONE
     }
 
     override fun getInfo(progress: android.view.View) {
